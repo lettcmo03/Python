@@ -1,0 +1,7 @@
+num=int(input('Digite um numero: '))
+num1=int(input('Digite um numero: '))
+num2=int(input('Digite um numero: '))
+max=max(num, num1, num2)
+min=min(num, num1, num2)
+print('O MAIOR número é: {}' .format(max))
+print('O MENOR número é: {}' .format(min))

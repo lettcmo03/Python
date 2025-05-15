@@ -1,0 +1,5 @@
+print (' =========== DESAFIO 2 CONCLUIDO ===============')
+d = input ('Dia = ')
+m = input ('Mês = ')
+y = input ('Ano = ')
+print('Você nasceu no dia', d, 'de', m, 'de', y , '. Correto?') 
