@@ -1,6 +1,26 @@
 import random
-print('WELCOME TO BLACKJACK')
 
+def line():
+    print('=-'*30)
+
+def set_winner():
+
+    winner = t_player if abs(t_player - 21) < abs(t_house - 21) else t_house
+    if winner == t_player:
+        print('Since you are closer to 21, you WON!')
+    elif winner == t_house:
+        print('Since the house is closer to 21, you LOST!')
+    elif t_house == t_player:
+        print('It is a TIE!')
+    
+    #asks if the player wants to go again
+    start = int(input('Would you like to go again? \n[0] - YES\n[1] - NO\n'))
+    if start == 0:
+        t_player = 0
+
+line()
+print('WELCOME TO BLACKJACK')
+line()
 #creates a limit for the game
 cards = 52
 first_run = True
@@ -18,8 +38,12 @@ start = int(input('Would you like to: \n[0] - HIT\n[1] - STOP\n'))
 first = {first_run, cards != 0, start == 0, t_house < 21, t_player < 21}
 more = {first_run, cards != 0, start == 0, t_house < 21, t_player < 21}
 
+# setting the rules for the game
+rules = [cards != 0, start == 0, t_house < 21, t_player < 21] 
+
+
 #starting the game
-while (first_run and cards != 0, start == 0, t_house < 21, t_player < 21):
+while rules == True:
     cards -= 1 #each round it takes 1 card
     fist_run = False
     
@@ -119,17 +143,5 @@ if start == 1 and t_player < 21:
         print(f'The house chose to buy, it got {t_house}')
 
 #define a winer if the player decides to break first
-    winner = t_player if abs(t_player - 21) < abs(t_house - 21) else t_house
-    if winner == t_player:
-        print('Since you are closer to 21, you WON!')
-    elif winner == t_house:
-        print('Since the house is closer to 21, you LOST!')
-    elif t_house == t_player:
-        print('It is a TIE!')
-    
-    #asks if the player wants to go again
-    start = int(input('Would you like to go again? \n[0] - YES\n[1] - NO\n'))
-    if start == 0:
-        t_player = 0
 
 print('Game Over')
