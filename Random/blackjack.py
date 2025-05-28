@@ -39,11 +39,12 @@ first = {first_run, cards != 0, start == 0, t_house < 21, t_player < 21}
 more = {first_run, cards != 0, start == 0, t_house < 21, t_player < 21}
 
 # setting the rules for the game
-rules = [cards != 0, start == 0, t_house < 21, t_player < 21] 
+rules = cards != 0 and start == 0 and t_house < 21 and t_player < 21
+finish = start == 1, t_player > 21, t_house < 21
 
 
 #starting the game
-while rules == True:
+while cards != 0 and start == 0 and t_house < 21 and t_player < 21:
     cards -= 1 #each round it takes 1 card
     fist_run = False
     
@@ -72,7 +73,10 @@ while rules == True:
         if start == 0:
             t_player = 0
 #gives the action to see if the player stops before 21
-if start == 1 and t_player < 21: 
+if start == 1:
+    rules = False
+
+if t_player < 21: 
     if t_house >= 17:
         print(f'Wise choice, you gave up at {t_player}.')
     
@@ -109,6 +113,7 @@ while {cards != 0, start == 0, t_house < 21, t_player < 21}:
     new = hit + t_player
     #that's the new player total, after the hit
     t_player = new 
+
     
 #if both the house and the player are lower than 21    
     if t_player < 21 and t_house < 21: 
