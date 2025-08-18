@@ -2,7 +2,7 @@ import random
 from InquirerPy import prompt
 import sys
 import time
-from colorama import Fore as f
+from colorama import Fore as f, Style
 
 options = ['🍒','🍀','🔔','🥠','🍋']
 
@@ -44,12 +44,11 @@ def checking_results():
 
     match counts:
         case [3]:
-            print(f.GREEN + 'JACKPOT')
-        case [1, 2]:     # two of one, one of another
-            print(f.YELLOW + 'Almost there!')
-        case [1, 1, 1]:  # all unique
-            print(f.LIGHTRED_EX + 'Better Luck next time!')
-
+            print(f.GREEN + 'JACKPOT!' + Style.RESET_ALL)
+        case [1, 2]:
+            print(f.YELLOW + 'Almost there!' + Style.RESET_ALL)
+        case [1, 1, 1]:
+            print(f.LIGHTRED_EX + 'Better luck next time!' + Style.RESET_ALL)
 V_points = '🍒'# 5
 X_points = '🍀'# 10
 XX_points = '🔔'# 20
