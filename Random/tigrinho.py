@@ -1,12 +1,19 @@
 import random
 from InquirerPy import prompt
+import sys
+import time
+from colorama import Fore as f
 
 options = ['🍒','🍀','🔔','🥠','🍋']
 
-def game():
+def spin(reels=3, spins=15):
     global machine
-    machine = random.choices(options, k = 3)
-    print(machine)
+    for i in range(spins):
+        machine = [random.choice(options) for _ in range(reels)]
+        sys.stdout.write("\r" + " | ".join(machine))
+        sys.stdout.flush()
+        time.sleep(0.1 + i * 0.02)  # gradually slow down
+    print()  # move to next line
 
 def nxt():
     play = [
@@ -32,6 +39,16 @@ def nxt():
             print('Here we go again!')
             game()
 
+def checking_results():
+    counts = sorted([machine.count(x) for x in set(machine)])
+
+    match counts:
+        case [3]:
+            print(f.GREEN + 'JACKPOT')
+        case [1, 2]:     # two of one, one of another
+            print(f.YELLOW + 'Almost there!')
+        case [1, 1, 1]:  # all unique
+            print(f.LIGHTRED_EX + 'Better Luck next time!')
 
 V_points = '🍒'# 5
 X_points = '🍀'# 10
@@ -39,19 +56,9 @@ XX_points = '🔔'# 20
 L_points = '🍋'# 50
 C_points = '🥠' # 100
 
+def game():
+    spin()
+    checking_results()
+    nxt()
+
 game()
-
-counts = sorted([machine.count(x) for x in set(machine)])
-
-match counts:
-    case [3]:
-        print('JACKPOT')
-        nxt()
-    case [1, 2]:     # two of one, one of another
-        print('Almost there!')
-        nxt()
-    case [1, 1, 1]:  # all unique
-        print('Better Luck next time!')
-        nxt()
-
-# ! TODO: CREATE THE RULES FOR ALL THE OTHER SYMBOLS
